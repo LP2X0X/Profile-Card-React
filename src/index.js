@@ -2,6 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
+const skills = [
+  { skillName: "C#", skillLevel: "advanced", bgColor: "#9b95bf" },
+  { skillName: "C++", skillLevel: "beginner", bgColor: "darkGreen" },
+  { skillName: "HTML+CSS", skillLevel: "intermediate", bgColor: "gray" },
+  { skillName: "Git", skillLevel: "advanced", bgColor: "brown" },
+  { skillName: "JavaScript", skillLevel: "beginner", bgColor: "darkRed" },
+  { skillName: "Rust", skillLevel: "beginner", bgColor: "lightBlue" },
+  { skillName: "React", skillLevel: "beginner", bgColor: "green" },
+  { skillName: ".NET", skillLevel: "advanced", bgColor: "lightGreen" },
+];
+
 function Avatar(props) {
   return <img className="avatar" alt="avatar" src="resources/IMG_3306.PNG" />;
 }
@@ -38,15 +49,21 @@ function App() {
         <Name />
         <About />
         <section className="skills">
-          <Skill skillName="C#" emoji="💪" bgColor="#9b95bf" />
-          <Skill skillName="C++" emoji="💪" bgColor="darkGreen" />
-          <Skill skillName="HTML+CSS" emoji="💪" bgColor="gray" />
-          <Skill skillName="Git" emoji="💪" bgColor="brown" />
+          {skills.map((skill) => {
+            let level = "";
 
-          <Skill skillName="JavaScript" emoji="💪" bgColor="darkRed" />
-          <Skill skillName="Rust" emoji="💪" bgColor="lightBlue" />
-          <Skill skillName="React" emoji="💪" bgColor="green" />
-          <Skill skillName=".NET" emoji="💪" bgColor="lightGreen" />
+            if (skill.skillLevel === "beginner") level = "👶";
+            else if (skill.skillLevel === "intermediate") level = "👍";
+            else if (skill.skillLevel === "advanced") level = "💪";
+
+            return (
+              <Skill
+                skillName={skill.skillName}
+                emoji={level}
+                bgColor={skill.bgColor}
+              />
+            );
+          })}
         </section>
       </section>
     </div>
