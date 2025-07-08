@@ -32,11 +32,15 @@ function About() {
   );
 }
 
-function Skill(props) {
+function Skill({ bgColor, skillName, level }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.bgColor }}>
-      <span style={{ marginRight: "0.1875rem" }}>{props.skillName}</span>
-      <span>{props.emoji}</span>
+    <div className="skill" style={{ backgroundColor: bgColor }}>
+      <span style={{ marginRight: "0.1875rem" }}>{skillName}</span>
+      <span>
+        {level === "beginner" && "👶"}
+        {level === "intermediate" && "👍"}
+        {level === "advanced" && "💪"}
+      </span>
     </div>
   );
 }
@@ -50,16 +54,10 @@ function App() {
         <About />
         <section className="skills">
           {skills.map((skill) => {
-            let level = "";
-
-            if (skill.skillLevel === "beginner") level = "👶";
-            else if (skill.skillLevel === "intermediate") level = "👍";
-            else if (skill.skillLevel === "advanced") level = "💪";
-
             return (
               <Skill
                 skillName={skill.skillName}
-                emoji={level}
+                level={skill.skillLevel}
                 bgColor={skill.bgColor}
               />
             );
